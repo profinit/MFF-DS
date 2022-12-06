@@ -76,19 +76,17 @@ see https://www.sqlite.org/download.html
 
 If you are on Linux:
 
-```
+```bash
 sudo apt-get install sqlite3
-sqlite3 mlflow.db ".databases"
+sqlite3 ./analysis/mlflow.db ".databases"
 ```
 
 Then run
 
 ```bash
-mlflow server --backend-store-uri "sqlite:///./mlflow.db" --default-artifact-root file:./mlruns -h 0.0.0.0 -p 8008
+cd analysis
+mlflow server --backend-store-uri "sqlite:///$PWD/mlflow.db" --default-artifact-root file:$PWD/mlruns -h localhost -p 5000
 ```
-
-**!!! NOTE:** If you used this command, the port is different than default `5000`. Above you can see the port is `8008`. Keep this in mind, when setting `MLFLOW_TRACKING_URI`
-
 
 ## 4. Run your jupyter server
 
@@ -153,7 +151,7 @@ mlflow.log_artifact("fancy-graph-name.png")
 
 ### Loading a model 
 
-If you use database storage along with MLFlow for your models
+If you use database storage along with MLFlow for your registered models
 
 ```python
 mlflow.pyfunc.load_model('models:/titanic/2')
