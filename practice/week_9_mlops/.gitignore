@@ -1,0 +1,14 @@
+# project settings and cache
+.python-version
+.ipynb_checkpoints
+
+# data
+*.csv
+*.db
+
+# mlflow
+mlruns/
+mlartifacts/
+
+# venv
+venv*
